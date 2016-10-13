@@ -6,25 +6,11 @@ output: word_document
 ---
 
 # Background
-Given the median salary of locations in United States and using web scraping tools in R such as "Rvest", this task requires an analysis based on data to determine if Target should open a store in Terre Haute area. The data of median house income is provided by instructor and the number of Target stores are scrabed from online. 
+Given the median salary of locations in United States and using web scraping tools in R such as "Rvest", this task requires a statistical analysis based on data to determine if Target should open a store in Terre Haute area. The data of median house income is provided by instructor and the number of Target stores at locations are scrabed from online. 
 
 # Approach
-The ensential skills required for complishing this task is to properly scrape information from website and cleaning data for usage. R Packages such as "Rvest" and "stringr" are used to accomplish the goal. The Target store infomation of one state is obtained in every iterations of the for loop. The state's corresponding url is created by two base url components and state name. Then after identity the html class containing desired informations, functions form "rvest" are called to extract pure text informations. Some string manipulations are applied to the text to clean the text into a nice dataframe which can be used later. 
+The ensential skills required for complishing this task is to properly scrape information from website and cleaning data for usage. R Packages such as "Rvest" and "stringr" are used to accomplish web scraping and data cleaning. The Target store infomation of each state is obtained in every iterations of the for loop. The state's corresponding url is created by combining two base url components and state name. Then, after identifying the html class containing desired informations, functions form "rvest" are called to extract information as in pure text. String manipulations are applied to the text to clean into a nice dataframe which can be used later. 
 
-```
-## Loading required package: xml2
-```
-
-```
-## 
-## Attaching package: 'rvest'
-```
-
-```
-## The following object is masked from 'package:readr':
-## 
-##     guess_encoding
-```
 
 
 
@@ -73,7 +59,7 @@ df_gen <- merge(df_income,df_stores,by="ZipCode",all = TRUE)
 ```
 
 # Result
-After acquired all necessary information, the criteria for determination of whether Target should open a store in Terre Haute area is to compare number of stores where median income exceeds Terre Haute area median income and the number of stores where median income does not exceed Terre Haute area median income. 
+After acquired all necessary information, the criteria for determination of whether Target should open a store in Terre Haute area is to compare number of stores where median income exceeds Terre Haute area and the number of stores where median income does not exceed Terre Haute. 
 
 
 ```r
