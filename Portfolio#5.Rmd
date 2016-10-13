@@ -82,7 +82,7 @@ Number of Target stores where median income does not exceed Terre Haute:
 ```{r,echo=FALSE}
 store_lower_median
 ```
-Considering there are 30% of current openning Target stores are located where median income is lower than Terre Haute area, if median income is the only factor for the decision making, it will probably be profitable for Target to open a store in Terre Haute area.
+Considering there are about 30% of current openning Target stores are located where median income is lower than Terre Haute area, if median income is the only factor for the decision making, it will probably be profitable for Target to open a store in Terre Haute area.
 
 # Reflection
 Accomplishing this project requires basic knowledge of html structure and rvest library. The most time-consuming part of this project is to identify the desired html node from viewing the webpage source code. In order to filting the zipcode, I learned regular expression to perform the string matching function in "stringr" library.

@@ -10,15 +10,25 @@ Given the median salary of locations in United States and using web scraping too
 
 # Approach
 The ensential skills required for complishing this task is to properly scrape information from website and cleaning data for usage. R Packages such as "Rvest" and "stringr" are used to accomplish the goal. The Target store infomation of one state is obtained in every iterations of the for loop. The state's corresponding url is created by two base url components and state name. Then after identity the html class containing desired informations, functions form "rvest" are called to extract pure text informations. Some string manipulations are applied to the text to clean the text into a nice dataframe which can be used later. 
-```{r,echo=FALSE}
-library(readr)
-library(rvest)
-library(jsonlite)
-library(httr)
+
+```
+## Loading required package: xml2
+```
+
+```
+## 
+## Attaching package: 'rvest'
+```
+
+```
+## The following object is masked from 'package:readr':
+## 
+##     guess_encoding
 ```
 
 
-```{r,eval=FALSE}
+
+```r
 # set base urls
 base_url1 <- "http://www.allstays.com/c/target-"
 base_url2 <- "-locations.htm"
@@ -44,7 +54,8 @@ names(df_stores) <- c("ZipCode","#stores")        # rename column names
 save(df_stores,file = "target_info.Rda")          # save result
 ```
 After obtaing alll informations of targets at 50 states of united states, the result is merged with the informations of median income by zipcode. 
-```{r,eval=TRUE}
+
+```r
 income_df = read.csv("input/ACS_14_5YR_B19013_with_ann.csv",skip =1)
 # rename some columns
 colnames(income_df)[4]<-"estimate_median"
@@ -64,7 +75,8 @@ df_gen <- merge(df_income,df_stores,by="ZipCode",all = TRUE)
 # Result
 After acquired all necessary information, the criteria for determination of whether Target should open a store in Terre Haute area is to compare number of stores where median income exceeds Terre Haute area median income and the number of stores where median income does not exceed Terre Haute area median income. 
 
-```{r}
+
+```r
 TH_median <- df_gen$est_income_median[df_gen$ZipCode==47803]    # median income of Terre Haute
 
 # number of Target where median is lower higher
@@ -74,22 +86,25 @@ store_lower_median <- sum(df_gen$est_income_median<TH_median & df_gen$`#stores`>
 ```
 
 Number of Target stores where median income exceeds Terre Haute:
-```{r,echo=FALSE}
-store_higher_median
+
+```
+## [1] 1150
 ```
 
 Number of Target stores where median income does not exceed Terre Haute:
-```{r,echo=FALSE}
-store_lower_median
+
 ```
-Considering there are 30% of current openning Target stores are located where median income is lower than Terre Haute area, if median income is the only factor for the decision making, it will probably be profitable for Target to open a store in Terre Haute area.
+## [1] 466
+```
+Considering there are about 30% of current openning Target stores are located where median income is lower than Terre Haute area, if median income is the only factor for the decision making, it will probably be profitable for Target to open a store in Terre Haute area.
 
 # Reflection
 Accomplishing this project requires basic knowledge of html structure and rvest library. The most time-consuming part of this project is to identify the desired html node from viewing the webpage source code. In order to filting the zipcode, I learned regular expression to perform the string matching function in "stringr" library.
 
 
 # Full Code
-```{r,eval=FALSE}
+
+```r
 library(readr)
 library(rvest)
 library(jsonlite)
@@ -144,6 +159,5 @@ TH_median <- df_gen$est_income_median[df_gen$ZipCode==47803]    # median income 
 store_higher_median <- sum(df_gen$est_income_median>TH_median & df_gen$`#stores`>0,na.rm=TRUE)
 # number of Target where median income is lower
 store_lower_median <- sum(df_gen$est_income_median<TH_median & df_gen$`#stores`>0,na.rm=TRUE)
-
 ```
 
