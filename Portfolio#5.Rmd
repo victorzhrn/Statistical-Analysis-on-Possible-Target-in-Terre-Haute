@@ -9,7 +9,7 @@ output: word_document
 Given the median salary of locations in United States and using web scraping tools in R such as "Rvest", this task requires a statistical analysis based on data to determine if Target should open a store in Terre Haute area. The data of median house income is provided by instructor and the number of Target stores at locations are scrabed from online. 
 
 # Approach
-The ensential skills required for complishing this task is to properly scrape information from website and cleaning data for usage. R Packages such as "Rvest" and "stringr" are used to accomplish web scraping and data cleaning. The Target store infomation of each state is obtained in every iterations of the for loop. The state's corresponding url is created by combining two base url components and state name. Then, after identifying the html class containing desired informations, functions form "rvest" are called to extract information as in pure text. String manipulations are applied to the text to clean into a nice dataframe which can be used later. 
+The ensential skills required for accomplishing this task is to properly scrape information from website and cleaning data for usage. R Packages such as "Rvest" and "stringr" are used to do web scraping and data cleaning. The Target store infomation of each state is obtained in every iterations of the for loop. Inside the for loop, the state's corresponding url is created by combining two base url components and state name. Then, after identifying the html class containing desired informations, functions form "rvest" are called to extract information as in pure text. String manipulations are applied to the text to clean into a nice dataframe which can be used later. 
 ```{r,echo=FALSE}
 library(readr)
 library(rvest)
@@ -102,13 +102,13 @@ g
 
 
 
-As it can be shown on the pie plot, there are roughly over 30% of targets are opened in the area where median income is lower than Terre Haute. Based on a significant amount of Targets open in those area with lower incomes, one should be open in Terre Haute.
+Looking at the pie plot, there are roughly over 30% of targets are opened in the area where median income is lower than Terre Haute. Based on a significant amount of Targets open in those area with lower incomes, one should be open in Terre Haute.
 
 # Reflection
 Accomplishing this project requires basic knowledge of html structure and rvest library. The most time-consuming part of this project is to identify the desired html node from viewing the webpage source code. In order to filting the zipcode, I learned regular expression to perform the string matching function in "stringr" library.
 
 #### Limitations
-Idealy, the number of locations where do not have Target should be taken into consideration as well. However, even though the income information of all location is provided in the dataset, information on the population and other geographical information are not provided. Without those crusial informations, a bias can be generated because many locations with low population do not have targets. Therefore, an inspection of locations without Target is not conducted based on limited recourses. 
+Idealy, the number of locations where do not have Target should be taken into consideration as well. However, even though the income information of all location is provided in the dataset, information on the population and other geographical information are not provided. Without those necessary information, the fact that many locations with low population do not have targets and they can make up majority of the dataset can raise a strong bias. Therefore, an inspection of numbers of locations without Target is not conducted based on limited recourses. 
 
 
 # Full Code
