@@ -88,7 +88,10 @@ Considering there are over 400 current openning Target stores are located where 
 Based on the number of locations where has targets, a pie plot is generated to have a better visualizaiton of ratio between the locations where median income is higher or lower than Terre Haute.
 
 
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
+<img src="figure/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
+
+
+
 As it can be shown on the pie plot, there are roughly over 30% of targets are opened in the area where median income is lower than Terre Haute. Based on a significant amount of Targets open in those area with lower incomes, one should be open in Terre Haute.
 
 # Reflection
