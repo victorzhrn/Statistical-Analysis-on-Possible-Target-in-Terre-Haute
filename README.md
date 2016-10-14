@@ -82,10 +82,20 @@ Number of Target stores where median income does not exceed Terre Haute:
 ```
 ## [1] 466
 ```
-Considering there are about 30% of current openning Target stores are located where median income is lower than Terre Haute area, if median income is the only factor for the decision making, it will probably be profitable for Target to open a store in Terre Haute area.
+Considering there are over 400 current openning Target stores are located where median income is lower than Terre Haute area, if median income is the only factor for the decision making, it will probably be profitable for Target to open a store in Terre Haute area.
+
+#### Graph
+Based on the number of locations where has targets, a pie plot is generated to have a better visualizaiton of ratio between the locations where median income is higher or lower than Terre Haute.
+
+
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
+As it can be shown on the pie plot, there are roughly over 30% of targets are opened in the area where median income is lower than Terre Haute. Based on a significant amount of Targets open in those area with lower incomes, one should be open in Terre Haute.
 
 # Reflection
 Accomplishing this project requires basic knowledge of html structure and rvest library. The most time-consuming part of this project is to identify the desired html node from viewing the webpage source code. In order to filting the zipcode, I learned regular expression to perform the string matching function in "stringr" library.
+
+#### Limitations
+Idealy, the number of locations where do not have Target should be taken into consideration as well. However, even though the income information of all location is provided in the dataset, information on the population and other geographical information are not provided. Without those crusial informations, a bias can be generated because many locations with low population do not have targets. Therefore, an inspection of locations without Target is not conducted based on limited recourses. 
 
 
 # Full Code
@@ -145,5 +155,14 @@ TH_median <- df_gen$est_income_median[df_gen$ZipCode==47803]    # median income 
 store_higher_median <- sum(df_gen$est_income_median>TH_median & df_gen$`#stores`>0,na.rm=TRUE)
 # number of Target where median income is lower
 store_lower_median <- sum(df_gen$est_income_median<TH_median & df_gen$`#stores`>0,na.rm=TRUE)
+
+groups <- c("higher median income","lower median income")
+info <- rbind(store_higher_median,store_lower_median)
+df_tem <- data.frame(groups,info)    # create data frame for plot usage
+
+g <- ggplot(df_tem,aes(x="",y=info,fill=groups))+geom_bar(width = 1,stat = "identity") # construct bar plot
+g <- g+guides(fill=guide_legend(title="Conditions"))+xlab("")+ylab("")      # set labels
+g <- g+coord_polar("y",start=0)              # change to polar coordinate system
+g
 ```
 
