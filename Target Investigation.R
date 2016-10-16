@@ -28,11 +28,12 @@ store_lower_median <- sum(df_gen$est_income_median<TH_median & df_gen$`#stores`>
 
 groups <- c("higher median income","lower median income")
 info <- rbind(store_higher_median,store_lower_median)
-df_tem <- data.frame(groups,info)
+df_tem <- data.frame(groups,info)    # create data frame for plot usage
 
-g <- ggplot(df_tem,aes(x="",y=info,fill=groups))+geom_bar(width = 1,stat = "identity")
-g <- g+guides(fill=guide_legend(title="Conditions"))+xlab("")+ylab("")
-g <- g+coord_polar("y",start=0)
+
+g <- ggplot(df_tem,aes(x="",y=info,fill=groups))+geom_bar(width = 1,stat = "identity") # construct bar plot
+g <- g+guides(fill=guide_legend(title="Conditions"))+xlab("")+ylab("")      # set labels
+g <- g+coord_polar("y",start=0)              # change to polar coordinate system
 g
 
 
